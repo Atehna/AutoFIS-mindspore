@@ -19,7 +19,7 @@ AutoFIS通过两阶段的方法来选择重要的特征交互：
 
 **重新训练阶段**：在这一阶段，选择具有非零值的架构参数（具有特定特征交互的模型）进行重新训练，保持架构参数作为注意力单元以进一步提升模型的准确率。
 
-[![71819063519](C:/Users/十二/AppData/Local/Temp/1718190635197.png)](https://github.com/Atehna/AutoFIS-mindspore/blob/main/imgs/AutoFIS%20structure.png)
+[![Auto-FIS-structure.png](https://i.postimg.cc/pLt29Lnz/Auto-FIS-structure.png)](https://postimg.cc/56ncT1g2)
 
 ## 开发环境
 
@@ -45,7 +45,8 @@ GPU: 1*Tnt004(16GB)|CPU: 8核 32GB
 
 **私有数据集**：该数据集来自华为应用商店的一个游戏推荐场景，包含应用特征（如ID、类别）、用户特征（如用户的行为历史）和上下文特征。
 
-**数据集下载链接**：https://github.com/Atomu2014/Ads-RecSys-Datasets。注意事项：数据集必须要通过tar命令解压，不要用解压工具解压。
+**数据集下载链接**：https://github.com/Atomu2014/Ads-RecSys-Datasets
+注意事项：数据集必须要通过tar命令解压，不要用解压工具解压。
 
 ## mindspore实现版本
 
@@ -83,9 +84,9 @@ GPU: 1*Tnt004(16GB)|CPU: 8核 32GB
 
 先装MindStudio和CANN，然后在MindStudio中配置CANN，即可使用X2MindSpore工具。
 
-![71818048493](C:/Users/十二/AppData/Local/Temp/1718180484934.png)
+[![X2-Mind-Spore.png](https://i.postimg.cc/j5NTdVdZ/X2-Mind-Spore.png)](https://postimg.cc/ZBT2VMNd)
 
-![71818050752](C:/Users/十二/AppData/Local/Temp/1718180507529.png)
+[![X2-Mind-Spore1.png](https://i.postimg.cc/RFrrYPQf/X2-Mind-Spore1.png)](https://postimg.cc/CZ46Bs2L)
 
 - 将Tensorflow的Api替换为MindSpore的API，下面是本次模型迁移过程中替换的API和Class
 
@@ -192,10 +193,14 @@ def get_loss(loss_func, pos_weight=1.0):
 以下是Avazu数据集在mindspore版本下autodeepfm模型的训练结果:
 
 **搜索阶段**
+[![retrain1.png](https://i.postimg.cc/wvY5ZJt3/retrain1.png)](https://postimg.cc/zLpRRyF1)
+[![retrain2.png](https://i.postimg.cc/SKfjQzTn/retrain2.png)](https://postimg.cc/R3qvXqzm)
+[![retrain3.png](https://i.postimg.cc/XvL766qF/retrain3.png)](https://postimg.cc/d77KGX8t)
 
-![516d131bd0e9038918301cc93ab27](../../Temp/9516d131bd0e9038918301cc93ab27b.png)![46859bacfcf94e24b2fd325a0b2e2](../../Temp/546859bacfcf94e24b2fd325a0b2e2e.png)![3173fd45938e2aa0d5d2bec824906](../../Temp/f3173fd45938e2aa0d5d2bec8249069.png)
 
 **重训练阶段**:将comb_mask设为[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1]得到最终训练结果
 
-![ab1fa20719ca7f3d6491bf6f80424](../../Temp/5ab1fa20719ca7f3d6491bf6f804245.png)![e8bb2c892d1dc087f1da60e656697](../../Temp/0e8bb2c892d1dc087f1da60e656697b.png)![742a2419173c74f40075cc6a4952f](../../Temp/a742a2419173c74f40075cc6a4952f5.png)
+[![search-train1.png](https://i.postimg.cc/zvbJhLjS/search-train1.png)](https://postimg.cc/4HGkkxjm)
+[![search-train2.png](https://i.postimg.cc/65ZW5vTB/search-train2.png)](https://postimg.cc/zVJZx3nQ)
+[![search-train3.png](https://i.postimg.cc/prwPJ2cN/search-train3.png)](https://postimg.cc/vxvRQddX)
 
