@@ -19,7 +19,7 @@ AutoFIS通过两阶段的方法来选择重要的特征交互：
 
 **重新训练阶段**：在这一阶段，选择具有非零值的架构参数（具有特定特征交互的模型）进行重新训练，保持架构参数作为注意力单元以进一步提升模型的准确率。
 
-![71819063519](C:/Users/十二/AppData/Local/Temp/1718190635197.png)
+[![71819063519](C:/Users/十二/AppData/Local/Temp/1718190635197.png)](https://github.com/Atehna/AutoFIS-mindspore/blob/main/imgs/AutoFIS%20structure.png)
 
 ## 开发环境
 
